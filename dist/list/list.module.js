@@ -12,12 +12,13 @@ const list_service_1 = require("./list.service");
 const list_controller_1 = require("./list.controller");
 const firebase_module_1 = require("../firebase/firebase.module");
 const ejs_service_1 = require("../ejs/ejs.service");
+const calender_module_1 = require("../calender/calender.module");
 let ListModule = class ListModule {
 };
 exports.ListModule = ListModule;
 exports.ListModule = ListModule = __decorate([
     (0, common_1.Module)({
-        imports: [firebase_module_1.FirebaseModule],
+        imports: [firebase_module_1.FirebaseModule, calender_module_1.CalenderModule],
         controllers: [list_controller_1.ListController],
         providers: [list_service_1.ListService, ejs_service_1.EjsService],
     })

@@ -41,10 +41,10 @@ export class AdminService {
   }
 
   async init(filePath: string) {
-    const workbook = xlsx.readFile(filePath);
-    const sheetName = workbook.SheetNames[0];
-    const sheet = workbook.Sheets[sheetName];
-    const range = xlsx.utils.decode_range(sheet['!ref']);
+    const workbook = xlsx.readFile(filePath); // 엑셀을 읽어
+    const sheetName = workbook.SheetNames[0]; // 맨 첫번제 페이지의 이름
+    const sheet = workbook.Sheets[sheetName]; // 이름으로 맨 첫번째 페이지를 열여
+    const range = xlsx.utils.decode_range(sheet['!ref']); // 데이터 몇개 있는지 센다
 
     let updates = {};
     let updates2 = {};

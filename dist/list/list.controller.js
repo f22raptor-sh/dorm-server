@@ -15,9 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListController = void 0;
 const common_1 = require("@nestjs/common");
 const list_service_1 = require("./list.service");
+const calender_service_1 = require("../calender/calender.service");
 let ListController = class ListController {
-    constructor(listService) {
+    constructor(listService, calenderService) {
         this.listService = listService;
+        this.calenderService = calenderService;
     }
     async listRend() {
         const stdTemp = await this.listService.stdInfo();
@@ -30,11 +32,12 @@ let ListController = class ListController {
     }
     async changeOut(std_number, start_day, end_day, res) {
         const result = await this.listService.out(std_number, start_day, end_day);
+        await this.calenderService.Adding(std_number, start_day, end_day);
         return res.status(result.status).json({ message: result.message });
     }
     async showLog(std_number, res) {
         const logjson = await this.listService.log(std_number);
-        res.json(logjson);
+        return res.json(logjson);
     }
 };
 exports.ListController = ListController;
@@ -75,6 +78,7 @@ __decorate([
 ], ListController.prototype, "showLog", null);
 exports.ListController = ListController = __decorate([
     (0, common_1.Controller)('list'),
-    __metadata("design:paramtypes", [list_service_1.ListService])
+    __metadata("design:paramtypes", [list_service_1.ListService,
+        calender_service_1.CalenderService])
 ], ListController);
 //# sourceMappingURL=list.controller.js.map
