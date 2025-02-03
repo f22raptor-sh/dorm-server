@@ -17,6 +17,7 @@ exports.CalenderModule = CalenderModule = __decorate([
     (0, common_1.Module)({
         controllers: [calender_controller_1.CalenderController],
         providers: [calender_service_1.CalenderService],
+        exports: [calender_service_1.CalenderService],
     })
 ], CalenderModule);
 //# sourceMappingURL=calender.module.js.map
