@@ -6,7 +6,13 @@ const path_1 = require("path");
 const session = require("express-session");
 const fs = require("fs");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    const httpsOptions = {
+        key: fs.readFileSync('/etc/letsencrpt/54.180.189.44.sslip.io/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/letsencrpt/54.180.189.44.sslip.io/fullchain.pem'),
+    };
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, {
+        httpsOptions,
+    });
     app.use(session({
         secret: 'AgsjqwebjtAEKmaGdsWEkljHfbqKjwietn',
         resave: false,
@@ -18,7 +24,7 @@ async function bootstrap() {
     if (!fs.existsSync('./uploads')) {
         fs.mkdirSync('./uploads');
     }
-    await app.listen(process.env.PORT ?? 3000);
+    await app.listen(process.env.PORT ?? 8080);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

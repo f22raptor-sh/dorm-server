@@ -4,9 +4,19 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import * as session from 'express-session';
 import * as fs from 'fs';
+import * as https from 'https';
+import { cert } from 'firebase-admin/app';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const httpsOptions = {
+    key: fs.readFileSync('/etc/letsencrpt/54.180.189.44.sslip.io/privkey.pem'),
+    cert: fs.readFileSync(
+      '/etc/letsencrypt/live/letsencrpt/54.180.189.44.sslip.io/fullchain.pem',
+    ),
+  };
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    httpsOptions,
+  });
 
   app.use(
     session({
@@ -22,7 +32,8 @@ async function bootstrap() {
   if (!fs.existsSync('./uploads')) {
     fs.mkdirSync('./uploads');
   }
-  await app.listen(process.env.PORT ?? 3000);
+
+  await app.listen(process.env.PORT ?? 8080);
 }
 bootstrap();
 
