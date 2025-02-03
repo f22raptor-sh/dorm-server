@@ -24,7 +24,7 @@ async function bootstrap() {
     if (!fs.existsSync('./uploads')) {
         fs.mkdirSync('./uploads');
     }
-    await app.listen(process.env.PORT ?? 443);
+    await app.listen(process.env.PORT ?? 8080);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

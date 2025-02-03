@@ -35,7 +35,7 @@ async function bootstrap() {
     fs.mkdirSync('./uploads');
   }
 
-  await app.listen(process.env.PORT ?? 443);
+  await app.listen(process.env.PORT ?? 8080);
 }
 bootstrap();
 
