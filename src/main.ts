@@ -9,9 +9,11 @@ import { cert } from 'firebase-admin/app';
 
 async function bootstrap() {
   const httpsOptions = {
-    key: fs.readFileSync('/etc/letsencrpt/54.180.189.44.sslip.io/privkey.pem'),
+    key: fs.readFileSync(
+      '/etc/letsencrpt/live/54.180.189.44.sslip.io/privkey.pem',
+    ),
     cert: fs.readFileSync(
-      '/etc/letsencrypt/live/letsencrpt/54.180.189.44.sslip.io/fullchain.pem',
+      '/etc/letsencrypt/live/54.180.189.44.sslip.io/fullchain.pem',
     ),
   };
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
