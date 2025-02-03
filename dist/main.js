@@ -7,7 +7,7 @@ const session = require("express-session");
 const fs = require("fs");
 async function bootstrap() {
     const httpsOptions = {
-        key: fs.readFileSync('/etc/letsencrpt/live/54.180.189.44.sslip.io/privkey.pem'),
+        key: fs.readFileSync('/etc/letsencrypt/live/54.180.189.44.sslip.io/privkey.pem'),
         cert: fs.readFileSync('/etc/letsencrypt/live/54.180.189.44.sslip.io/fullchain.pem'),
     };
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
